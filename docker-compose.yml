@@ -1,0 +1,29 @@
+version: '3'
+
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: db_mysql
+
+    ports:
+      - '3307:3306'
+
+    environment:
+       MYSQL_DATABASE: 'outliers_db'
+       MYSQL_USER: 'admin'
+       MYSQL_PASSWORD: 'new-strong-password'
+       MYSQL_ROOT_PASSWORD: 'new-strong-password'
+
+  web:
+    build:
+      dockerfile: dockerfile
+      context: .
+    image: jl/flask_server
+    container_name: flask_server
+
+    ports:
+        - 5000:5000
+
+    depends_on:
+      - db
