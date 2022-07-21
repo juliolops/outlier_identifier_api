@@ -10,10 +10,10 @@ services:
       - '3307:3306'
 
     environment:
-       MYSQL_DATABASE: 'outliers_db'
+       MYSQL_DATABASE: 'raizen_gasoline'
        MYSQL_USER: 'admin'
-       MYSQL_PASSWORD: 'new-strong-password'
-       MYSQL_ROOT_PASSWORD: 'new-strong-password'
+       MYSQL_PASSWORD: 'password'
+       MYSQL_ROOT_PASSWORD: 'password'
 
   web:
     build:

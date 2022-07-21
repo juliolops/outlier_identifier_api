@@ -3,4 +3,5 @@ venv./*
 __pycache__/*
 migrations/*
 pyc*
-.ipynb_checkpoints/*
+outlier_indentifier_model/.ipynb_checkpoints/*
+__pycache*
