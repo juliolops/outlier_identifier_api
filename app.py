@@ -211,7 +211,7 @@ class database(Resource):
         
         else:
 
-            return jsonify({"model status":"Model wasn't trained yet"})
+            return jsonify({"model status":"Model isn't trained yet"})
 
         
 

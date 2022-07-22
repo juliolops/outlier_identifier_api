@@ -52,7 +52,7 @@ def create_table_ifnot_exists(connection_settings,project_name,table_name):
     sql_query =  """
     CREATE TABLE IF NOT EXISTS {} (
 
-    id int(11) PRIMARY KEY NOT NULL,
+    id int(11) NOT NULL,
     time timestamp NOT NULL,
     outlier_prob float NOT NULL,
     class_pred VARCHAR(20) NOT NULL
