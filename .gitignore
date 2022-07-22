@@ -5,3 +5,4 @@ migrations/*
 pyc*
 outlier_indentifier_model/.ipynb_checkpoints/*
 __pycache*
+*-checkpoint.ipynb

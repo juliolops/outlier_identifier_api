@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This project is a API to populate a MySQL database with fraud scores of the clients. This API was developed in Python language with Flask web framework and It is containerized so that it is runned using docker-compose up command. The chosen machine learning model to identify the outliers is a Isolation Forest.
+This project is a API to populate a MySQL database with fraud scores of the clients. This API was developed in Python language with Flask web framework and It is containerized so that it is runned using docker-compose up command. The chosen machine learning model to identify the outliers is a Isolation Forest. this application is documented by swagger so it is possible for the user to manipulate the api using the swagger UI.
 
 ---
 
@@ -57,6 +57,28 @@ Example of post request to insert many values
 
 ```
 ---
+
+## Endpoint to populate the database with scores
+
+```http://0.0.0.0:5000/populate_data```
+
+This route train the machine learning model, generate the database and process it for calculate the predictions variables (total_liters, total_amount_paid and is_premium) then persist that into database
+
+
+```
+Example of post request to insert many values
+
+{
+
+    "project_name":"raizen_gasoline",
+    "table_name":"fraud"
+    
+}
+
+```
+
+
+---
 # Development of machine learning model to identify outliers 
 
 
@@ -69,6 +91,7 @@ Example of post request to insert many values
 
 ```
 from sklearn.ensemble import IsolationForest
+from sklearn.model_selection import train_test_split
  
 table_grouped_array = np.array(table_grouped)
 user_ids = table_grouped_array[1:,0]
