@@ -6,6 +6,12 @@ This project is a API to populate a MySQL database with fraud scores of the clie
 
 ---
 
+## Swagger UI
+
+![image](https://user-images.githubusercontent.com/40969977/180535343-3962d8e4-c3da-4577-a98f-a909105ec3b0.png)
+
+---
+
 ## Tecnologies
 
 - Flask
