@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This project is a API to populate a MySQL database with fraud scores of the clients. This API was developed in Python language with Flask web framework and It is containerized so that it is runned using docker-compose up command. The chosen machine learning model to identify the outliers is a Isolation Forest. this application is documented by swagger so it is possible for the user to manipulate the api using the swagger UI.
+This project is a API to populate a MySQL database with fraud scores of the clients. This API was developed in Python language with Flask web framework and It is containerized so that it is runned using docker-compose up command. The chosen machine learning model to identify the outliers is a Isolation Forest. This application is documented by swagger so it is possible for the user to manipulate the api using the swagger UI.
 
 ---
 
@@ -20,7 +20,7 @@ This project is a API to populate a MySQL database with fraud scores of the clie
 
 ---
 
-## Endpoint to insert values into project_name.table_name
+## Endpoint to insert values into project_name.table_name (POST)
 
 ```http://0.0.0.0:5000/insert```
 
@@ -28,7 +28,7 @@ This route receive post requests and the data has the following fields: id(user 
 
 
 ```
-Example of post request to insert one value
+Example of json to insert one value
 
 {
     
@@ -43,7 +43,7 @@ Example of post request to insert one value
 ```
 
 ```
-Example of post request to insert many values
+Example of json to insert many values
 
 {
     
@@ -58,15 +58,15 @@ Example of post request to insert many values
 ```
 ---
 
-## Endpoint to populate the database with scores
+## Endpoint to populate the database with scores (POST)
 
 ```http://0.0.0.0:5000/populate_data```
 
-This route train the machine learning model, generate the database and process it for calculate the predictions variables (total_liters, total_amount_paid and is_premium) then persist that into database
+This route generate the database and process it for calculate the predictions variables (total_liters, total_amount_paid and is_premium), train the machine learning model then persist that into database.
 
 
 ```
-Example of post request to insert many values
+Example of json to populate the database
 
 {
 
@@ -76,6 +76,34 @@ Example of post request to insert many values
 }
 
 ```
+
+## Endpoint to train the machine learning model (GET)
+
+```http://0.0.0.0:5000/train```
+
+This route receive **get request** and generate the database and process it for calculate the predictions variables (total_liters, total_amount_paid and is_premium) then train the machine learning model
+
+
+
+## Endpoint to predict the score (POST)
+
+```http://0.0.0.0:5000/predict```
+
+This route predict the score with trained model
+
+
+```
+Example of json to predict scores
+
+{
+  "total_liters": 100,
+  "total_amount_paid": 100,
+  "is_premium": 1
+}
+
+```
+
+
 
 
 ---
