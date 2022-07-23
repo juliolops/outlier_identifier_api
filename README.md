@@ -12,7 +12,7 @@ This project is a API to populate a MySQL database with fraud scores of the clie
 
 ---
 
-## Tecnologies
+## Technologies
 
 - Flask
 - MySQL
