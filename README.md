@@ -30,7 +30,7 @@ This project is a API to populate a MySQL database with fraud scores of the clie
 
 ```http://0.0.0.0:5000/insert```
 
-This route receive post requests and the data has the following fields: id(user id primary key), outlier_prob, class_pred (fraud or nonfraud), project_name and table_name. The data received is persisted in the table called project_name.table_name.
+This route receive post requests and the data has the following fields: id(user id), outlier_prob, class_pred (fraud or nonfraud), project_name and table_name. The data received is persisted in the table called project_name.table_name.
 
 
 ```
@@ -68,7 +68,7 @@ Example of json to insert many values
 
 ```http://0.0.0.0:5000/populate_data```
 
-This route generate the database and process it for calculate the predictions variables (total_liters, total_amount_paid and is_premium), train the machine learning model then persist that into database.
+This route generate the database and process it for calculate the prediction variables (total_liters, total_amount_paid and is_premium), train the machine learning model then persist that into database.
 
 
 ```
@@ -108,9 +108,10 @@ Example of json to predict scores
 }
 
 ```
+---
+# Tests
 
-
-
+The python file called **test_api.py** in the root directory has 4 aplication tests (one for each route). These tests are executed by the **library pytest** using the command **py.test**. You have to run **py.test** in the root directory. 
 
 ---
 # Development of machine learning model to identify outliers 
@@ -167,6 +168,25 @@ print(response)
 
 ```
 
+## Histogram of the prediction variables by predicted class applied in the test dataset:
+
+![download](https://user-images.githubusercontent.com/40969977/180610893-14a444e5-06e5-4e0a-b64b-411122966bd5.png)
+
+## Boxplots of the prediction variables by predicted class applied in the test dataset:
+
+![download (1)](https://user-images.githubusercontent.com/40969977/180611001-a54b30a6-3dcd-4fd3-886d-61d669313e9e.png)
+
+
+## Some observations about the results of the model in the test dataset
+
+- the median, maximum and minimum of the variables total_amout_paid and total_liters for customers predicted as fraud are quite discrepant when compared to customers predicted as not fraud, as we can see in the boxplots.
+
+
+
+- The distributions of variables total liters, total amount of customers predicted as non-fraudulent have the shape of a normal distribution, whereas customers predicted as fraudulent have distributions well distributed in small and high values.
+
+
+- the model is considering all premiuns as fraud, as we can see in the histogram above, but considering that the model identifies outliers and premium customers are exclusive and have a specific behavior, this is expected to happen because it is quite different from most other customers. A possible treatment for version 2 of this model is to create a segmentation for these premium customers.
 
 
 

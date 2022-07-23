@@ -1,8 +1,5 @@
 import requests
 
-
-
-
 def test_post_insert():
 
      data = {"id": 0,
